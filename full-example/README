@@ -1,0 +1,51 @@
+This program:
+
+* scrapes any new records from https://www.england.nhs.uk/news/
+* appends new records to a CSV file
+* updates a notebook with some analysis
+* if configured, sends an email notification about new articles
+
+Sending email
+-------------
+
+To send email from PythonAnywhere, you will need a gmail.com account.
+
+I strongly suggest that you don't reuse an existing account, but instead create
+a new one for the purpose, as you will need to give your code running on
+PythonAnywhere access to your inbox via a password.  (And if you have shared
+your PythonAnywhere account with a teacher, they could gain access to the
+inbox.)
+
+Once you've created a new account, you'll want to create an app password:
+
+* Go to https://myaccount.google.com/
+* Ensure you are managing the new account
+* Click on "Security" on LHS
+* Enable 2-Step Verification
+* Go back to the Security page
+* Click on "App passwords"
+* Generate a new password
+  * Choose an app type of "Other"
+  * Enter "pythonanywhere-nhs-news-scraper" for a name
+  * Copy this password
+
+You should now update config.py:
+
+* Change SEND_EMAIL to True
+* Change EMAIL_RECIPIENT to your email address
+* Change EMAIL_USER to the address of the account you have just created
+* Change EMAIL_PASSWORD to the app password you have just created for this
+  account
+
+
+Running the scraper hourly
+--------------------------
+
+You can schedule PythonAnywhere to run a task hourly or daily.
+
+On the Tasks tab, create a new hourly task that runs
+
+    python3 /home/[your username]/full-example/scraper.py
+
+You can view any output of running the scheduled task by clicking the "View
+task log" button on the Tasks tab.
